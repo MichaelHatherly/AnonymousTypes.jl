@@ -45,7 +45,7 @@ See `@type` for examples.
 :(@immutable)
 
 function buildcall(kind, args...)
-    # Typed are generated on a per-module basis.
+    # Types are generated on a per-module basis.
     modname = Val{hash(fullname(current_module()))}()
     names, values = Expr(:tuple), Expr(:tuple)
     for a in args
