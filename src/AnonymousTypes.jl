@@ -81,8 +81,7 @@ function term(x, n)
 end
 term(s :: Symbol, n) = (quot(s), tvar(symbol("T_", n)))
 
-tvar(s)     = TypeVar(s, Any, true)
-tvar(s, t)  = TypeVar(s, t, true)
+tvar(s) = TypeVar(s, Any, true)
 
 xtvar(s, x) = :(TypeVar($(quot(s)), $x, true))
 
