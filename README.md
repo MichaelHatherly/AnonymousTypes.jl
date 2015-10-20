@@ -48,3 +48,57 @@ t.x + t.y == 3
 Create an anonymous immutable type instance.
 
 See `@type` for examples.
+
+<hr/>
+
+<a name="AnonymousTypes.@Anon"></a>
+
+```
+@Anon(...)
+```
+
+Create signature for anonymous (either mutable or immutable) types. Can be used in function definitions as follows:
+
+```julia
+f(a :: @Anon(x, y), b :: @Anon(:: Integer, y :: Vector)) = ...
+```
+
+**Syntax**
+
+Anonymous type with 2 fields, `a` and `b`:
+
+```julia
+@Anon(a, b)
+```
+
+Anonymous type with 3 unnamed fields of type `T_i` for `i = 1:3`:
+
+```julia
+@Anon(:: T_1, :: T_2, :: T_3)
+```
+
+Anonymous type with 1 field named `a` subtyping from `Integer`:
+
+```julia
+@Anon(a :: Integer)
+```
+
+<hr/>
+
+<a name="AnonymousTypes.@Type"></a>
+
+```
+@Type(...)
+```
+
+Similar to `@Anon` but limited to mutable types.
+
+<hr/>
+
+<a name="AnonymousTypes.@Immutable"></a>
+
+```
+@Immutable(...)
+```
+
+Similar to `@Anon` but limited to immutable types.

@@ -13,3 +13,15 @@
 <hr/>
 
 @{@immutable}
+
+<hr/>
+
+@{@Anon}
+
+<hr/>
+
+@{@Type}
+
+<hr/>
+
+@{@Immutable}

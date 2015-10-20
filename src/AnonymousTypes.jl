@@ -9,6 +9,86 @@ module AnonymousTypes
 
 using Base.Meta, Compat
 
+
+# Dispatch macros.
+
+export @Anon, @Type, @Immutable
+
+abstract GeneratedType{mutable, fields, types}
+
+"""
+    @Anon(...)
+
+Create signature for anonymous (either mutable or immutable) types. Can be used in function
+definitions as follows:
+
+```julia
+f(a :: @Anon(x, y), b :: @Anon(:: Integer, y :: Vector)) = ...
+```
+
+**Syntax**
+
+Anonymous type with 2 fields, `a` and `b`:
+
+```julia
+@Anon(a, b)
+```
+
+Anonymous type with 3 unnamed fields of type `T_i` for `i = 1:3`:
+
+```julia
+@Anon(:: T_1, :: T_2, :: T_3)
+```
+
+Anonymous type with 1 field named `a` subtyping from `Integer`:
+
+```julia
+@Anon(a :: Integer)
+```
+"""
+macro Anon(args...) buildsig(tvar(:M), args...) end
+
+"""
+    @Type(...)
+
+Similar to `@Anon` but limited to mutable types.
+"""
+macro Type(args...) buildsig(true, args...) end
+
+"""
+    @Immutable(...)
+
+Similar to `@Anon` but limited to immutable types.
+"""
+macro Immutable(args...) buildsig(false, args...) end
+
+function buildsig(mutable, args...)
+    fields, types = Any[], Any[]
+    for (i, x) in enumerate(args)
+        f, t = term(x, i)
+        push!(fields, f)
+        push!(types, t)
+    end
+    fields, types = map(esc, fields), map(esc, types)
+    :(GeneratedType{$mutable, Tuple{$(fields...)}, Tuple{$(types...)}})
+end
+
+function term(x, n)
+    F_n, T_n = symbol("F_", n), symbol("T_", n)
+    isexpr(x, :(::), 1) ? (tvar(F_n),       xtvar(T_n, x.args[1])) :
+    isexpr(x, :(::), 2) ? (quot(x.args[1]), xtvar(T_n, x.args[2])) :
+    error("invalid syntax. $x")
+end
+term(s :: Symbol, n) = (quot(s), tvar(symbol("T_", n)))
+
+tvar(s)     = TypeVar(s, Any, true)
+tvar(s, t)  = TypeVar(s, t, true)
+
+xtvar(s, x) = :(TypeVar($(quot(s)), $x, true))
+
+
+# Construction macros.
+
 export @type, @immutable
 
 @eval macro $(:type)(args...) buildcall(:m, args...) end
@@ -71,7 +151,8 @@ function struct{T}(ismutable, ::Type{T}, args...)
     # Build type expression.
     fields = [x.parameters[1] for x in T.parameters]
     name   = typename(ismutable, fields, args)
-    expr   = Expr(:type, ismutable, name, quote end)
+    super  = GeneratedType{ismutable, Tuple{fields...}, Tuple{args...}}
+    expr   = Expr(:type, ismutable, Expr(:(<:), name, super), quote end)
 
     expr.args[end].args = [:($x :: $y) for (x, y) in zip(fields, args)]
 
