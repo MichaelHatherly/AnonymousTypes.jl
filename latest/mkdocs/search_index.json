@@ -1,0 +1,34 @@
+{
+    "docs": [
+        {
+            "location": "/", 
+            "text": "AnonymousTypes\n\n\nAnonymous mutable and immutable types.\n\n\n\n\nContents\n\n\n\n\nAnonymousTypes\n\n\nContents\n\n\nInstallation\n\n\nIndex\n\n\nPublic Interface\n\n\n\n\n\n\n\n\n\n\nInstallation\n\n\nThis package is unregistered and so must be installing using \nPkg.clone\n\n\nPkg\n.\nclone\n(\nhttps://github.com/MichaelHatherly/AnonymousTypes.jl\n)\n\n\n\n\n\n\n\n\nIndex\n\n\n\n\nAnonymousTypes\n\n\nAnonymousTypes.@Anon\n\n\nAnonymousTypes.@Immutable\n\n\nAnonymousTypes.@Type\n\n\nAnonymousTypes.@immutable\n\n\nAnonymousTypes.@type\n\n\n\n\n\n\nPublic Interface\n\n\n#\n\n\nAnonymousTypes\n \n \nModule\n.\n\n\n\n\nAnonymousTypes\n\n\n\n\n\nCreate anonymous mutable and immutable type instances using \n@type\n and \n@immutable\n macros.\n\n\n#\n\n\nAnonymousTypes.@type\n \n \nMacro\n.\n\n\n\n\n@type(...)\n\n\n\n\n\nCreate an anonymous mutable type instance.\n\n\nExamples\n\n\nt\n \n=\n \n@\ntype\n x\n \n=\n \n1\n \ny\n \n=\n \n2\n\n\nt\n.\nx\n \n+\n \nt\n.\ny\n \n==\n \n3\n\n\n\n\n\n\nVariables may be used in place of \n=\n expressions:\n\n\nx\n \n=\n \n1\n\n\nt\n \n=\n \n@\ntype\n x\n \ny\n \n=\n \n2\n\n\nt\n.\nx\n \n+\n \nt\n.\ny\n \n==\n \n3\n\n\n\n\n\n\n#\n\n\nAnonymousTypes.@immutable\n \n \nMacro\n.\n\n\n\n\n@immutable(...)\n\n\n\n\n\nCreate an anonymous immutable type instance.\n\n\nSee \n@type\n for examples.\n\n\n#\n\n\nAnonymousTypes.@Anon\n \n \nMacro\n.\n\n\n\n\n@Anon(...)\n\n\n\n\n\nCreate signature for anonymous (either mutable or immutable) types. Can be used in function definitions as follows:\n\n\nf\n(\na\n \n::\n \n@\nAnon\n(\nx\n,\n \ny\n),\n \nb\n \n::\n \n@\nAnon\n(::\n \nInteger\n,\n \ny\n \n::\n \nVector\n))\n \n=\n \n...\n\n\n\n\n\n\nSyntax\n\n\nAnonymous type with 2 fields, \na\n and \nb\n:\n\n\n@\nAnon\n(\na\n,\n \nb\n)\n\n\n\n\n\n\nAnonymous type with 3 unnamed fields of type \nT_i\n for \ni = 1:3\n:\n\n\n@\nAnon\n(::\n \nT_1\n,\n \n::\n \nT_2\n,\n \n::\n \nT_3\n)\n\n\n\n\n\n\nAnonymous type with 1 field named \na\n subtyping from \nInteger\n:\n\n\n@\nAnon\n(\na\n \n::\n \nInteger\n)\n\n\n\n\n\n\n#\n\n\nAnonymousTypes.@Type\n \n \nMacro\n.\n\n\n\n\n@Type(...)\n\n\n\n\n\nSimilar to \n@Anon\n but limited to mutable types.\n\n\n#\n\n\nAnonymousTypes.@Immutable\n \n \nMacro\n.\n\n\n\n\n@Immutable(...)\n\n\n\n\n\nSimilar to \n@Anon\n but limited to immutable types.", 
+            "title": "Home"
+        }, 
+        {
+            "location": "/#anonymoustypes", 
+            "text": "Anonymous mutable and immutable types.", 
+            "title": "AnonymousTypes"
+        }, 
+        {
+            "location": "/#contents", 
+            "text": "AnonymousTypes  Contents  Installation  Index  Public Interface", 
+            "title": "Contents"
+        }, 
+        {
+            "location": "/#installation", 
+            "text": "This package is unregistered and so must be installing using  Pkg.clone  Pkg . clone ( https://github.com/MichaelHatherly/AnonymousTypes.jl )", 
+            "title": "Installation"
+        }, 
+        {
+            "location": "/#index", 
+            "text": "AnonymousTypes  AnonymousTypes.@Anon  AnonymousTypes.@Immutable  AnonymousTypes.@Type  AnonymousTypes.@immutable  AnonymousTypes.@type", 
+            "title": "Index"
+        }, 
+        {
+            "location": "/#public-interface", 
+            "text": "#  AnonymousTypes     Module .   AnonymousTypes  Create anonymous mutable and immutable type instances using  @type  and  @immutable  macros.  #  AnonymousTypes.@type     Macro .   @type(...)  Create an anonymous mutable type instance.  Examples  t   =   @ type  x   =   1   y   =   2  t . x   +   t . y   ==   3   Variables may be used in place of  =  expressions:  x   =   1  t   =   @ type  x   y   =   2  t . x   +   t . y   ==   3   #  AnonymousTypes.@immutable     Macro .   @immutable(...)  Create an anonymous immutable type instance.  See  @type  for examples.  #  AnonymousTypes.@Anon     Macro .   @Anon(...)  Create signature for anonymous (either mutable or immutable) types. Can be used in function definitions as follows:  f ( a   ::   @ Anon ( x ,   y ),   b   ::   @ Anon (::   Integer ,   y   ::   Vector ))   =   ...   Syntax  Anonymous type with 2 fields,  a  and  b :  @ Anon ( a ,   b )   Anonymous type with 3 unnamed fields of type  T_i  for  i = 1:3 :  @ Anon (::   T_1 ,   ::   T_2 ,   ::   T_3 )   Anonymous type with 1 field named  a  subtyping from  Integer :  @ Anon ( a   ::   Integer )   #  AnonymousTypes.@Type     Macro .   @Type(...)  Similar to  @Anon  but limited to mutable types.  #  AnonymousTypes.@Immutable     Macro .   @Immutable(...)  Similar to  @Anon  but limited to immutable types.", 
+            "title": "Public Interface"
+        }
+    ]
+}
