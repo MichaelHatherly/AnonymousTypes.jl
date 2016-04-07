@@ -1,0 +1,29 @@
+site_name:        AnonymousTypes.jl
+repo_url:         https://github.com/MichaelHatherly/AnonymousTypes.jl
+site_description: Anonymous mutable and immutable types.
+site_author:      Michael Hatherly
+
+theme: material
+
+extra:
+  palette:
+    primary: 'indigo'
+    accent:  'blue'
+
+extra_css:
+  - assets/Documenter.css
+
+markdown_extensions:
+  - codehilite
+  - extra
+  - tables
+  - fenced_code
+
+extra_javascript:
+  - https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML
+  - assets/mathjaxhelper.js
+
+docs_dir: 'build'
+
+pages:
+  - Home: index.md

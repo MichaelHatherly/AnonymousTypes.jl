@@ -3,7 +3,8 @@ __precompile__()
 """
     AnonymousTypes
 
-Create anonymous mutable and immutable type instances using `@type` and `@immutable` macros.
+Create anonymous mutable and immutable type instances using [`@type`]({ref}) and
+[`@immutable`]({ref}) macros.
 """
 module AnonymousTypes
 
@@ -51,14 +52,14 @@ macro Anon(args...) buildsig(tvar(:M), args...) end
 """
     @Type(...)
 
-Similar to `@Anon` but limited to mutable types.
+Similar to [`@Anon`]({ref}) but limited to mutable types.
 """
 macro Type(args...) buildsig(true, args...) end
 
 """
     @Immutable(...)
 
-Similar to `@Anon` but limited to immutable types.
+Similar to [`@Anon`]({ref}) but limited to immutable types.
 """
 macro Immutable(args...) buildsig(false, args...) end
 
@@ -119,7 +120,7 @@ t.x + t.y == 3
 
 Create an anonymous immutable type instance.
 
-See `@type` for examples.
+See [`@type`]({ref}) for examples.
 """
 :(@immutable)
 

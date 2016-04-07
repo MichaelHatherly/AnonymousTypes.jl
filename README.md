@@ -2,103 +2,38 @@
 
 # AnonymousTypes
 
-[![Build Status](https://travis-ci.org/MichaelHatherly/AnonymousTypes.jl.svg?branch=master)](https://travis-ci.org/MichaelHatherly/AnonymousTypes.jl) [![Build status](https://ci.appveyor.com/api/projects/status/8372wpk7ig9yi4px?svg=true)](https://ci.appveyor.com/project/MichaelHatherly/anonymoustypes-jl) [![Coverage Status](http://codecov.io/github/MichaelHatherly/AnonymousTypes.jl/coverage.svg?branch=master)](http://codecov.io/github/MichaelHatherly/AnonymousTypes.jl?branch=master)
+## Installation
 
-<a name="Main.AnonymousTypes"></a>
-
-```
-AnonymousTypes
-```
-
-Create anonymous mutable and immutable type instances using `@type` and `@immutable` macros.
-
-<hr/>
-
-<a name="AnonymousTypes.@type"></a>
-
-```
-@type(...)
-```
-
-Create an anonymous mutable type instance.
-
-**Examples**
+This package is unregistered and so must be installing using `Pkg.clone`
 
 ```julia
-t = @type x = 1 y = 2
-t.x + t.y == 3
+Pkg.clone("https://github.com/MichaelHatherly/AnonymousTypes.jl")
 ```
 
-Variables may be used in place of `=` expressions:
+## Documentation
 
-```julia
-x = 1
-t = @type x y = 2
-t.x + t.y == 3
-```
+Documentation is generated using [`Documenter.jl`][documenter-url].
 
-<hr/>
+[![][docs-latest-img]][docs-latest-url]
 
-<a name="AnonymousTypes.@immutable"></a>
+## Project Status
 
-```
-@immutable(...)
-```
+`AnonymousTypes.jl` is tested against Julia `0.4` and *current* `0.5-dev`.
 
-Create an anonymous immutable type instance.
+[![][travis-img]][travis-url]
+[![][appveyor-img]][appveyor-url]
+[![][codecov-img]][codecov-url]
 
-See `@type` for examples.
+[documenter-url]: https://github.com/MichaelHatherly/Documenter.jl
 
-<hr/>
+[docs-latest-img]: https://img.shields.io/badge/docs-latest-blue.svg
+[docs-latest-url]: https://michaelhatherly.github.io/AnonymousTypes.jl/latest
 
-<a name="AnonymousTypes.@Anon"></a>
+[travis-img]: https://travis-ci.org/MichaelHatherly/AnonymousTypes.jl.svg?branch=master
+[travis-url]: https://travis-ci.org/MichaelHatherly/AnonymousTypes.jl
 
-```
-@Anon(...)
-```
+[appveyor-img]: https://ci.appveyor.com/api/projects/status/8372wpk7ig9yi4px?svg=true
+[appveyor-url]: https://ci.appveyor.com/project/MichaelHatherly/anonymoustypes-jl
 
-Create signature for anonymous (either mutable or immutable) types. Can be used in function definitions as follows:
-
-```julia
-f(a :: @Anon(x, y), b :: @Anon(:: Integer, y :: Vector)) = ...
-```
-
-**Syntax**
-
-Anonymous type with 2 fields, `a` and `b`:
-
-```julia
-@Anon(a, b)
-```
-
-Anonymous type with 3 unnamed fields of type `T_i` for `i = 1:3`:
-
-```julia
-@Anon(:: T_1, :: T_2, :: T_3)
-```
-
-Anonymous type with 1 field named `a` subtyping from `Integer`:
-
-```julia
-@Anon(a :: Integer)
-```
-
-<hr/>
-
-<a name="AnonymousTypes.@Type"></a>
-
-```
-@Type(...)
-```
-
-Similar to `@Anon` but limited to mutable types.
-
-<hr/>
-
-<a name="AnonymousTypes.@Immutable"></a>
-
-```
-@Immutable(...)
-```
-
-Similar to `@Anon` but limited to immutable types.
+[codecov-img]: http://codecov.io/github/MichaelHatherly/AnonymousTypes.jl/coverage.svg?branch=master
+[codecov-url]: http://codecov.io/github/MichaelHatherly/AnonymousTypes.jl?branch=master
