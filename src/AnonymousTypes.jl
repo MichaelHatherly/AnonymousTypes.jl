@@ -1,10 +1,25 @@
 __precompile__()
 
 """
-    AnonymousTypes
+Anonymous types are automatically generated types where the field names and field types are
+based on the values provided to them.
 
-Create anonymous mutable and immutable type instances using [`@type`]({ref}) and
-[`@immutable`]({ref}) macros.
+This package provides syntax for creating instances of these types, as well as syntax for
+dispatching to different methods based on their structural properties such as mutability,
+field names, and field types.
+
+The following exported macros are provided for public use.
+
+*Type Instantiation:*
+
+- [`@type`]({ref})
+- [`@immutable`]({ref})
+
+*Type Signatures:*
+
+- [`@Anon`]({ref})
+- [`@Type`]({ref})
+- [`@Immutable`]({ref})
 """
 module AnonymousTypes
 
@@ -18,8 +33,6 @@ export @Anon, @Type, @Immutable
 abstract GeneratedType{mutable, fields, types}
 
 """
-    @Anon(...)
-
 Create signature for anonymous (either mutable or immutable) types. Can be used in function
 definitions as follows:
 
@@ -49,18 +62,10 @@ Anonymous type with 1 field named `a` subtyping from `Integer`:
 """
 macro Anon(args...) buildsig(tvar(:M), args...) end
 
-"""
-    @Type(...)
-
-Similar to [`@Anon`]({ref}) but limited to mutable types.
-"""
+"Similar to [`@Anon`]({ref}) but limited to mutable types."
 macro Type(args...) buildsig(true, args...) end
 
-"""
-    @Immutable(...)
-
-Similar to [`@Anon`]({ref}) but limited to immutable types.
-"""
+"Similar to [`@Anon`]({ref}) but limited to immutable types."
 macro Immutable(args...) buildsig(false, args...) end
 
 function buildsig(mutable, args...)
@@ -93,8 +98,6 @@ export @type, @immutable
 
 @eval macro $(:type)(args...) buildcall(:m, args...) end
 """
-    @type(...)
-
 Create an anonymous mutable type instance.
 
 **Examples**
@@ -116,11 +119,10 @@ t.x + t.y == 3
 
 @eval macro $(:immutable)(args...) buildcall(:i, args...) end
 """
-    @immutable(...)
-
 Create an anonymous immutable type instance.
 
-See [`@type`]({ref}) for examples.
+See [`@type`]({ref}) for examples of use since, apart from their names, both macros support
+the same set of features.
 """
 :(@immutable)
 
