@@ -254,18 +254,23 @@
 <p><a id='AnonymousTypes' href='#AnonymousTypes'>#</a>
 <strong><code>AnonymousTypes</code></strong> &mdash; <em>Module</em>.</p>
 <hr />
-<div class="codehilite"><pre><span></span>AnonymousTypes
-</pre></div>
-
-
-<p>Create anonymous mutable and immutable type instances using <a href=".#AnonymousTypes.@type"><code>@type</code></a> and <a href=".#AnonymousTypes.@immutable"><code>@immutable</code></a> macros.</p>
+<p>Anonymous types are automatically generated types where the field names and field types are based on the values provided to them.</p>
+<p>This package provides syntax for creating instances of these types, as well as syntax for dispatching to different methods based on their structural properties such as mutability, field names, and field types.</p>
+<p>The following exported macros are provided for public use.</p>
+<p><em>Type Instantiation:</em></p>
+<ul>
+<li><a href=".#AnonymousTypes.@type"><code>@type</code></a></li>
+<li><a href=".#AnonymousTypes.@immutable"><code>@immutable</code></a></li>
+</ul>
+<p><em>Type Signatures:</em></p>
+<ul>
+<li><a href=".#AnonymousTypes.@Anon"><code>@Anon</code></a></li>
+<li><a href=".#AnonymousTypes.@Type"><code>@Type</code></a></li>
+<li><a href=".#AnonymousTypes.@Immutable"><code>@Immutable</code></a></li>
+</ul>
 <p><a id='AnonymousTypes.@type' href='#AnonymousTypes.@type'>#</a>
 <strong><code>AnonymousTypes.@type</code></strong> &mdash; <em>Macro</em>.</p>
 <hr />
-<div class="codehilite"><pre><span></span>@type(...)
-</pre></div>
-
-
 <p>Create an anonymous mutable type instance.</p>
 <p><strong>Examples</strong></p>
 <div class="codehilite"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="p">@</span><span class="k">type</span><span class="nc"> x</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">2</span>
@@ -283,19 +288,11 @@
 <p><a id='AnonymousTypes.@immutable' href='#AnonymousTypes.@immutable'>#</a>
 <strong><code>AnonymousTypes.@immutable</code></strong> &mdash; <em>Macro</em>.</p>
 <hr />
-<div class="codehilite"><pre><span></span>@immutable(...)
-</pre></div>
-
-
 <p>Create an anonymous immutable type instance.</p>
-<p>See <a href=".#AnonymousTypes.@type"><code>@type</code></a> for examples.</p>
+<p>See <a href=".#AnonymousTypes.@type"><code>@type</code></a> for examples of use since, apart from their names, both macros support the same set of features.</p>
 <p><a id='AnonymousTypes.@Anon' href='#AnonymousTypes.@Anon'>#</a>
 <strong><code>AnonymousTypes.@Anon</code></strong> &mdash; <em>Macro</em>.</p>
 <hr />
-<div class="codehilite"><pre><span></span>@Anon(...)
-</pre></div>
-
-
 <p>Create signature for anonymous (either mutable or immutable) types. Can be used in function definitions as follows:</p>
 <div class="codehilite"><pre><span></span><span class="n">f</span><span class="p">(</span><span class="n">a</span> <span class="p">::</span> <span class="p">@</span><span class="n">Anon</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">b</span> <span class="p">::</span> <span class="p">@</span><span class="n">Anon</span><span class="p">(::</span> <span class="n">Integer</span><span class="p">,</span> <span class="n">y</span> <span class="p">::</span> <span class="n">Vector</span><span class="p">))</span> <span class="o">=</span> <span class="o">...</span>
 </pre></div>
@@ -320,18 +317,10 @@
 <p><a id='AnonymousTypes.@Type' href='#AnonymousTypes.@Type'>#</a>
 <strong><code>AnonymousTypes.@Type</code></strong> &mdash; <em>Macro</em>.</p>
 <hr />
-<div class="codehilite"><pre><span></span>@Type(...)
-</pre></div>
-
-
 <p>Similar to <a href=".#AnonymousTypes.@Anon"><code>@Anon</code></a> but limited to mutable types.</p>
 <p><a id='AnonymousTypes.@Immutable' href='#AnonymousTypes.@Immutable'>#</a>
 <strong><code>AnonymousTypes.@Immutable</code></strong> &mdash; <em>Macro</em>.</p>
 <hr />
-<div class="codehilite"><pre><span></span>@Immutable(...)
-</pre></div>
-
-
 <p>Similar to <a href=".#AnonymousTypes.@Anon"><code>@Anon</code></a> but limited to immutable types.</p>
           <aside class="copyright" role="note">
             
