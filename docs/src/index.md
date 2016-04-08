@@ -8,7 +8,7 @@
 
 ## Installation
 
-This package is unregistered and so must be installing using `Pkg.clone`
+This package is unregistered and so must be installed using `Pkg.clone`
 
 ```julia
 Pkg.clone("https://github.com/MichaelHatherly/AnonymousTypes.jl")
